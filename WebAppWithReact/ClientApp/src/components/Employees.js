@@ -6,27 +6,7 @@ export class Employees extends Component {
   constructor(props) {
     super(props);
       this.state = { _employees: [], loading: true };
-      this.handleDeleteRow = this.handleDeleteRow.bind(this);
   }
-
-    handleDeleteRow(i) {
-        let rows = [...this.state.rows]
-        rows.splice(i, 1)
-        this.setState({
-            rows: rows
-        })
-    }
-
-    handleRemove (i) {
-    var that = this;
-     _.forEach(this.state, function (val, colName) {
-        that.state[colName].splice(i, 1); // BUG???
-        //_.pullAt(that.state[key], i); // doesn't work either
-    });
-    console.log(this.state);
-    this.setState(this.state);
-
-},
 
   componentDidMount() {
     this.currentListEmployees();
@@ -61,7 +41,6 @@ export class Employees extends Component {
                   <td>{employee.phone}</td>
                   <td>{employee.email}</td>
                   <td>
-                      <button onClick={this.handleRemove.bind(this, )}>Remove</button>
                   </td>
               </tr>
           )}
