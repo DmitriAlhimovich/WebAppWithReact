@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfEmployees>
+  <Employees>
+    <ID>6c210be8-67ce-4b6b-b87b-2f876658de08</ID>
+    <FirstName>Алена</FirstName>
+    <LastName>Лянцева</LastName>
+    <MiddleName>Викторовна</MiddleName>
+    <Gender>Female</Gender>
+    <DateOfBirth>1985-07-20</DateOfBirth>
+    <Department>Группа тестирования "Заработная плата"</Department>
+    <Post>Эксперт II категории</Post>
+    <Email>Alena@tut.by</Email>
+    <Photo>6c210be8-67ce-4b6b-b87b-2f876658de08</Photo>
+    <UserName>TS\LYANT</UserName>
+    <Role>User</Role>
+    <ModifyDate>2018-08-31T00:00:00+03:00</ModifyDate>
+    <IsReadGymInstruction>false</IsReadGymInstruction>
+    <Oid>4a153f29-718c-4b3e-8030-66451d49ba21</Oid>
+  </Employees>
+  <Employees>
+    <ID>ce204dd5-4cc1-4ceb-9a66-564be80ff2d8</ID>
+    <FirstName>Валентин</FirstName>
+    <LastName>Ляховец</LastName>
+    <MiddleName>Александрович</MiddleName>
+    <Gender>Male</Gender>
+    <DateOfBirth>1989-04-09</DateOfBirth>
+    <Department>Отдел разработки</Department>
+    <Post>Инженер-программист I категории</Post>
+    <Room>5130</Room>
+    <Phone>1883</Phone>
+    <Email>Valentin@gal.by</Email>
+    <Photo>ce204dd5-4cc1-4ceb-9a66-564be80ff2d8</Photo>
+    <UserName>TS\LYAKHOCH</UserName>
+    <Role>User</Role>
+    <ModifyDate>2018-08-31T00:00:00+03:00</ModifyDate>
+    <IsReadGymInstruction>false</IsReadGymInstruction>
+    <Oid>27d9fa59-328b-4e43-8993-f0d7cad87fbb</Oid>
+  </Employees>
+  <Employees>
+    <ID>2118c3cd-1496-466d-b54a-a3ba8134865a</ID>
+    <FirstName>Александр</FirstName>
+    <LastName>Маг</LastName>
+    <MiddleName>Викторович</MiddleName>
+    <Gender>Male</Gender>
+    <DateOfBirth>1982-06-20</DateOfBirth>
+    <Department>Отдел разработки "Управление персоналом"</Department>
+    <Post>Начальник отдела</Post>
+    <Room>1070</Room>
+    <Phone>1990</Phone>
+    <Email>A.Mag@gal.by</Email>
+    <Photo>2118c3cd-1496-466d-b54a-a3ba8134865a</Photo>
+    <UserName>TS\SH</UserName>
+    <Role>Admin</Role>
+    <ModifyDate>2018-08-31T00:00:00+03:00</ModifyDate>
+    <IsReadGymInstruction>true</IsReadGymInstruction>
+    <Oid>a7b85866-be3d-4dde-a1af-1d0eaad53300</Oid>
+  </Employees>
+  <Employees>
+    <ID>c28a1e28-856f-425d-a1c4-c396bd4f9864</ID>
+    <FirstName>Таисия</FirstName>
+    <LastName>Макарчук</LastName>
+    <MiddleName>Ивановна</MiddleName>
+    <Gender>Female</Gender>
+    <DateOfBirth>1981-07-21</DateOfBirth>
+    <Department>Административно-хозяйственный отдел</Department>
+    <Post>Вахтер</Post>
+    <Photo>c28a1e28-856f-425d-a1c4-c396bd4f9864</Photo>
+    <Role>User</Role>
+    <ModifyDate>2018-08-31T00:00:00+03:00</ModifyDate>
+    <IsReadGymInstruction>false</IsReadGymInstruction>
+    <Oid>8a1f87e3-0fc0-474f-a179-e008ba3685fb</Oid>
+  </Employees>
+  </ArrayOfEmployees>
