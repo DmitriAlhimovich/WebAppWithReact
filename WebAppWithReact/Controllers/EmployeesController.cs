@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using WebAppWithReact.Models;
 
 namespace WebAppWithReact.Controllers
@@ -12,9 +13,9 @@ namespace WebAppWithReact.Controllers
     [Route("[controller]")]
     public class EmployeesController : ControllerBase
     {
-       private readonly ILogger<EmployeesController> _logger;
-       private readonly IWebHostEnvironment _hostingEnvironment;
-       private EmployeeContext _db;
+        private readonly ILogger<EmployeesController> _logger;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private EmployeeContext _db;
 
         public EmployeesController(ILogger<EmployeesController> logger, IWebHostEnvironment hostingEnvironment, EmployeeContext context)
         {
@@ -23,7 +24,7 @@ namespace WebAppWithReact.Controllers
 
             _hostingEnvironment = hostingEnvironment;
         }
-                             
+
         [HttpGet]
         public IEnumerable<Employees> Get()
         {
@@ -35,12 +36,12 @@ namespace WebAppWithReact.Controllers
         {
             Employees employee = _db.Employees.FirstOrDefault(x => x.ID.ToString() == id);
             if (employee == null)
-              return NotFound();
+                return NotFound();
 
             try
             {
                 _db.Employees.Remove(employee);
-               return Ok(employee.ID);
+                return Ok(employee.ID);
             }
             finally
             {
@@ -48,18 +49,18 @@ namespace WebAppWithReact.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("addemployee")]
         //[HttpPost("{fio} {gender} {dateOfBirth} {department} {post} {room} {phine} {email}")]
-        public ActionResult AddEmployee([FromForm(Name ="fio")] string fio)
+        public ActionResult AddEmployee([FromBody] EmployeeModel model)
         {
-            Employees empl = new Employees();
-            empl.ID = Guid.NewGuid();
-            empl.FirstName = fio;
 
-            //_db.Employees.Add(empl);            
+            Employees employee = new Employees() {FirstName = model.FirstName, Department = model.Department};
+            //_db.Employees.Add(employee);
+            //_db.SaveChanges();
 
-            return RedirectToAction("employees");
+            return Ok();
         }
-      
+
     }
 }
