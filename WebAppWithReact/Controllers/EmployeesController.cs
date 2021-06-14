@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using WebAppWithReact.Models;
 
 namespace WebAppWithReact.Controllers
 {
@@ -14,53 +14,49 @@ namespace WebAppWithReact.Controllers
     {
        private readonly ILogger<EmployeesController> _logger;
        private readonly IWebHostEnvironment _hostingEnvironment;
-       private List<Employees> _data;
-       private string _error;
-       private readonly string _file;
+       private EmployeeContext _db;
 
-
-        public EmployeesController(ILogger<EmployeesController> logger, IWebHostEnvironment hostingEnvironment)
+        public EmployeesController(ILogger<EmployeesController> logger, IWebHostEnvironment hostingEnvironment, EmployeeContext context)
         {
             _logger = logger;
+            _db = context;
+
             _hostingEnvironment = hostingEnvironment;
-            _error = string.Empty;
-            _file = Path.Combine(_hostingEnvironment.ContentRootPath, "Data") + "\\Employees.xml";
-            _data = (List<Employees>)XMLFunction.ReadInformation(_file, new List<Employees>(), out _error);
         }
                              
         [HttpGet]
         public IEnumerable<Employees> Get()
         {
-            return (_error.Length > 0) ? null : _data;
+            return _db.Employees.ToList();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            Employees employee = _data.FirstOrDefault(x => x.ID.ToString() == id);
+            Employees employee = _db.Employees.FirstOrDefault(x => x.ID.ToString() == id);
             if (employee == null)
               return NotFound();
 
             try
             {
-               _data.Remove(employee);
+                _db.Employees.Remove(employee);
                return Ok(employee.ID);
             }
             finally
             {
-                XMLFunction.SaveInformation(_data, _file);
+                _db.SaveChanges();
             }
         }
 
         [HttpPost("addemployee")]
         //[HttpPost("{fio} {gender} {dateOfBirth} {department} {post} {room} {phine} {email}")]
-        public ActionResult addemployee([FromForm(Name ="fio")] string fio)
+        public ActionResult AddEmployee([FromForm(Name ="fio")] string fio)
         {
             Employees empl = new Employees();
             empl.ID = Guid.NewGuid();
             empl.FirstName = fio;
-            _data.Add(empl);
-            
+
+            //_db.Employees.Add(empl);            
 
             return RedirectToAction("employees");
         }

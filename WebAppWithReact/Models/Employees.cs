@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace WebAppWithReact
+namespace WebAppWithReact.Models
 {
     /// <summary>
     /// Сотрудник
