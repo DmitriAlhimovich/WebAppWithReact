@@ -28,7 +28,7 @@ namespace WebAppWithReact
 
             XmlSerializer formatter = new XmlSerializer(typeof(List<Employees>));
 
-            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
                 try
                 {
