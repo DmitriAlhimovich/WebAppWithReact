@@ -21,19 +21,17 @@ export class AddEmployee extends Component {
     onSubmit(event) {
         //alert(`${this.state.fio}, добро пожаловать!`);
         //let fio = event.target.value.fio;
-        fetch('employees/addemployee/',
+        fetch('employees/addemployee/' + ,
             {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstName: this.state.fio,
-                    department: this.state.department
-                })
+                }
 
-            }).then(res => alert(`Новый сотрудник ${this.state.fio} добавлен`));
+            }).then(res => res.json()).then(res => console.log(res));
+
+
         event.preventDefault();
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
 namespace WebAppWithReact.Models
@@ -17,6 +18,7 @@ namespace WebAppWithReact.Models
         /// <summary>
         /// Имя
         /// </summary>
+        [Required]
         public string FirstName { get; set; }
 
         /// <summary>
