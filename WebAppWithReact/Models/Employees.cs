@@ -63,7 +63,7 @@ namespace WebAppWithReact.Models
         /// </summary>
         //[XmlIgnore]
         [XmlElement(DataType = "date")]
-        public DateTime DateOfBirth { get; set; }        
+        public DateTime? DateOfBirth { get; set; }        
 
         /// <summary>
         /// Подразделение

@@ -27,9 +27,13 @@ export class AddEmployee extends Component {
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    firstName: this.state.fio,
+                    department: this.state.department
+                })
 
-            }).then(res => res.json()).then(res => console.log(res));
+            }).then(res => alert(`Новый сотрудник ${this.state.fio} добавлен`));
         event.preventDefault();
     }
 
