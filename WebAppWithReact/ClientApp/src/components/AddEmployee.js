@@ -1,4 +1,7 @@
 ﻿import React, { Component } from 'react';
+//import createBrowserHistory from 'history/createBrowserHistory';
+
+//const history = createBrowserHistory({ forceRefresh: true });
 
 export class AddEmployee extends Component {
     static displayName = AddEmployee.name;
@@ -21,18 +24,23 @@ export class AddEmployee extends Component {
     onSubmit(event) {
         //alert(`${this.state.fio}, добро пожаловать!`);
         //let fio = event.target.value.fio;
-        fetch('employees/addemployee/' + ,
+                
+        fetch('employees/addemployee/',
             {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    firstName: this.state.fio,
+                    department: this.state.department
+                })
 
-            }).then(res => res.json()).then(res => console.log(res));
-
-
+            });//.then(res => history.push('/employees')).then(res => console.log(res));
+        
         event.preventDefault();
+        this.props.history.push('/employees');
     }
 
     onChangeFio(event) {
@@ -60,11 +68,17 @@ export class AddEmployee extends Component {
     }
 
     onChangeEmail(event) {
-        this.setState({ phone: event.target.value });
+        this.setState({ email: event.target.value });
     }
 
+    //onChangeEmail(event) {
+    //    let userEmail = event.target.value;
+    //    (userEmail.match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/))
+    //        ? this.setState({ email: userEmail }) : this.setState({ email: "" });
+    //}
+
     onChangePhone(event) {
-        this.setState({ email: event.target.value });
+        this.setState({ phone: event.target.value });
     }
 
     render() {

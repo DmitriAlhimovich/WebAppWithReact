@@ -56,8 +56,8 @@ namespace WebAppWithReact.Controllers
         {
 
             Employees employee = new Employees() {FirstName = model.FirstName, Department = model.Department};
-            //_db.Employees.Add(employee);
-            //_db.SaveChanges();
+            _db.Employees.Add(employee);
+            _db.SaveChanges();
 
             return Ok();
         }
