@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Employees } from './components/Employees';
 import { AddEmployee } from './components/AddEmployee';
+import { EditEmployee } from './components/EditEmployee';
 
 import './custom.css'
 
@@ -21,6 +22,7 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/employees' component={Employees} />
         <Route path='/addemployee' component={AddEmployee} />
+        <Route path='/editemployee' component={EditEmployee} />
       </Layout>
     );
   }

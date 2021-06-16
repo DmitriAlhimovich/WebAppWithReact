@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 export class Employees extends Component {
     static displayName = Employees.name;
 
@@ -8,6 +11,7 @@ export class Employees extends Component {
         this.state = { employees: [], loading: true, searchedValue: '' };
         this.onRemoveEmployee = this.onRemoveEmployee.bind(this);
         this.onSearch = this.onSearch.bind(this);
+        this.onEdit = this.onEdit.bind(this);
         //this.onAddEmployee = this.onAddEmployee.bind(this);
     }
 
@@ -39,6 +43,11 @@ export class Employees extends Component {
         this.setState({ searchedValue: event.target.value });
     }
 
+    onEdit = (event) => {
+        let id = event.currentTarget.value;
+        this.props.history.push('editemployee/id=' + id);
+    }
+
     //onAddEmployee = (event) => {
     //    fetch('employees/addemployee',
     //        {
@@ -58,7 +67,7 @@ export class Employees extends Component {
         this.currentListEmployees();
     }
 
-    renderEmployeesTable(employees, onRemove, onSearch) {
+    renderEmployeesTable(employees, onRemove, onSearch, onEdit) {
 
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -74,6 +83,7 @@ export class Employees extends Component {
                         <th>Phone</th>
                         <th>Email</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,8 +98,11 @@ export class Employees extends Component {
                             <td>{employee.phone}</td>
                             <td>{employee.email}</td>
                             <td>
-                               <button value={employee.id} onClick={onRemove}>Remove</button>
-                            </td>                            
+                                <Button variant="outlined" value={employee.id} onClick={onRemove}>Remove</Button>
+                            </td>
+                            <td>
+                                <Button variant="outlined" value={employee.id} onClick={onEdit}>Edit</Button>
+                            </td>
                         </tr>
                     )}
                 </tbody>                
@@ -102,7 +115,7 @@ export class Employees extends Component {
          let newEmployees = this.state.employees.filter((item) => item.fio.includes(this.state.searchedValue));
          let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-             : this.renderEmployeesTable(newEmployees, this.onRemoveEmployee, this.onSearch);
+             : this.renderEmployeesTable(newEmployees, this.onRemoveEmployee, this.onSearch, this.onEdit);
 
         return (
             <div>

@@ -6,12 +6,14 @@
 
 import TextField from '@material-ui/core/TextField';
 
-export class AddEmployee extends Component {
-    static displayName = AddEmployee.name;
+export class EditEmployee extends Component {
+    static displayName = EditEmployee.name;
+
 
     constructor(props) {
+
         super(props);
-        this.state = { fio: '', gender: '', dateOfBirth: '', department: '', post: '', room: '', phone: '', email: '' };
+        this.state = { id: '', fio: '', gender: '', dateOfBirth: '', department: '', post: '', room: '', phone: '', email: '' };
 
         this.onChangeFio = this.onChangeFio.bind(this);
         this.onChangeGender = this.onChangeGender.bind(this);
@@ -22,13 +24,44 @@ export class AddEmployee extends Component {
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
+    }
+
+    async currentEmployee() {
+        const str = JSON.stringify(this.props.location);
+        const id = str.substring((str.indexOf("=")) + 1, 66);
+        const response = await await fetch('employees/editemployee/' + id.toUpperCase(),
+                {
+                    method: 'get',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    }                    
+                }
+        );
+        const data = await response.json();
+        this.setState({
+            fio: data.fio,
+            department: data.department,
+            gender: data.gender,
+            dateOfBirth: data.dateOfBirth,
+            post: data.post,
+            room: data.room,
+            phone: data.phone,
+            email: data.email,
+            id: data.id
+        });
+    }
+
+    componentDidMount() {
+        this.currentEmployee();
     }
 
     onSubmit(event) {
         //alert(`${this.state.fio}, добро пожаловать!`);
         //let fio = event.target.value.fio;
                 
-        fetch('employees/addemployee/',
+        fetch('employees/editemployee/',
             {
                 method: 'post',
                 headers: {
@@ -43,7 +76,8 @@ export class AddEmployee extends Component {
                     post: this.state.post,
                     room: this.state.room,
                     phone: this.state.phone,
-                    email: this.state.email
+                    email: this.state.email,
+                    id: this.state.id
                 })
 
             });//.then(res => history.push('/employees')).then(res => console.log(res));
@@ -122,8 +156,9 @@ export class AddEmployee extends Component {
                 <p><TextField id="standard-basic" label="Email" value={this.state.email} onChange={this.onChangeEmail} /></p>
                 <p><input type="submit" value="Submit" /></p>
 
-                <p>Match: {JSON.stringify(this.props.match)}</p>
+     
                 <p>Location {JSON.stringify(this.props.location)}</p>
+
 
             </form>
         );

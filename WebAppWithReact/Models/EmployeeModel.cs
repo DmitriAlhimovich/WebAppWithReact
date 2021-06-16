@@ -17,6 +17,9 @@ namespace WebAppWithReact.Models
 
         public string Department { get; set; }
 
+        public string Post { get; set; }
+
+        public string Id { get; set; }
 
     }
 }

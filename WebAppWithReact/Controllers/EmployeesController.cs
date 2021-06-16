@@ -62,5 +62,33 @@ namespace WebAppWithReact.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpGet("editemployee/{id}")]
+        public Employees EditEmployee(string id)
+        {
+
+            Guid guid = Guid.Parse(id.ToUpper());
+            Employees employee = _db.Employees.FirstOrDefault(x => x.ID == guid);
+
+            if (employee == null)
+                return null;
+
+            return employee;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("editemployee")]
+        public ActionResult EditEmployee([FromBody] EmployeeModel model)
+        {
+            Guid guid = Guid.Parse(model.Id.ToUpper());
+            var item = _db.Employees.Find(guid); // найдем запись
+            if (item != null)
+            {
+                item.Post = model.Post;
+                _db.SaveChanges();
+            }
+            return Ok();
+        }
+
     }
 }
