@@ -121,10 +121,6 @@ export class AddEmployee extends Component {
                 {/*    onChange={this.onChangeEmail} /></label></p>*/}
                 <p><TextField id="standard-basic" label="Email" value={this.state.email} onChange={this.onChangeEmail} /></p>
                 <p><input type="submit" value="Submit" /></p>
-
-                <p>Match: {JSON.stringify(this.props.match)}</p>
-                <p>Location {JSON.stringify(this.props.location)}</p>
-
             </form>
         );
     }
